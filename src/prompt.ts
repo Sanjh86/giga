@@ -23,7 +23,7 @@ export const getInsightsPrompt = (ideaRows, keywords) => {
     ', '
   )}] related list provided in the <DATA> section. Cluster this comma-separated list of search terms and YoY search growth and identify overall trends. Also, consider the list is sorted descending by growth rate.
 
-  Output as HTML with standard HTML elements like <h1> and <ul> for captions or lists.
+    Output the insights in a clearly structured, readable format using headings and bullet points (e.g., Markdown)
 
 <EXAMPLE>
 INPUT:
