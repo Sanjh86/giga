@@ -131,12 +131,16 @@ export const getInsights = (ideas, seedKeywords) => {
   return removeHTLMTicks(gemini(config)(insightsPrompt));
 };
 
+// --- Modified updateInsights function ---
 const updateInsights = () => {
   const ideas = getIdeasFromSheet();
-  const keywords = getSeedKeywords();
+  const keywords = SpreadsheetApp.getActive().getRangeByName('KEYWORDS').getValue();
   const insights = getInsights(ideas, keywords);
-  getInsightsSheet().getRange('A1').setValue(insights);
-  console.log(insights);
+  const insightsSheet = getInsightsSheet();
+
+  // Use setRichTextValue() instead of setValue() to apply formatting to the output.
+  const richTextValue = SpreadsheetApp.newRichTextValue().setText(insights).build();
+  insightsSheet.getRange('A1').setRichTextValue(richTextValue);
 };
 
 const getSearchVolumeRow = res => {
